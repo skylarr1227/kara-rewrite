@@ -1,0 +1,10 @@
+
+\.idea/
+
+\.python-version
+
+data/
+
+kara/__pycache__/
+
+kara/entities/__pycache__/
