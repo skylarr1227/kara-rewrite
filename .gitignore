@@ -8,3 +8,5 @@ data/
 kara/__pycache__/
 
 kara/entities/__pycache__/
+
+kara/cogs/__pycache__/
