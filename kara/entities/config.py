@@ -12,7 +12,7 @@ class Config:
     def __init__(self, name, lang, prefix, token, start_cogs):
         self.name = name
         self.lang = lang
-        self. prefix = prefix
+        self.prefix = prefix
         self.token = token
         self.start_cogs = start_cogs
 
