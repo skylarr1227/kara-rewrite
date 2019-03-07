@@ -43,6 +43,6 @@ class CustomClient(Bot):
         except cerrors.CommandNotFound:
             return
         except Exception:
-            await context.send(f"A {type(exception)} exception occurred: [{exception}]")
+            await context.send(f"An exception occurred: [{exception}]")
             print(exception)
             print(type(exception))
