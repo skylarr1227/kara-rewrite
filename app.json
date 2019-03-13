@@ -1,0 +1,22 @@
+{
+  "name": "Kara",
+  "description": "A simple Discord bot.",
+  "keywords": [
+    "discord",
+    "bot",
+    "python"
+  ],
+  "repository": "https://github.com/Stefankar1000/kara-rewrite",
+  "formation": {
+    "web": {
+      "quantity": 2,
+      "size": "Performance-M"
+    }
+  },
+  "image": "heroku/python",
+  "buildpacks": [
+    {
+      "url": "https://elements.heroku.com/buildpacks/heroku/heroku-buildpack-python"
+    }
+  ]
+}
