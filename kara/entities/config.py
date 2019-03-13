@@ -1,5 +1,5 @@
 from json import load
-from typing import List
+from typing import List, Optional
 
 
 class Config:
@@ -17,9 +17,11 @@ class Config:
         self.start_cogs = start_cogs
 
 
-def from_filename(filename: str, bot_name: str) -> Config:
+def get_config(filename: str, *bot_name: Optional[str]) -> Config:
     with open(filename, "r") as f:
         file = load(f)
+        if not bot_name:  # use the default bot name variable if no arguments were given
+            bot_name = file.get("default")
         assert file.get(bot_name)
         config = file.get(bot_name)
 

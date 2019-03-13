@@ -1,9 +1,10 @@
+import codecs
 from discord import Activity, ActivityType
 from json import load
 
 
-def from_filename(filename: str) -> Activity:
-    with open(filename, "r") as f:
+def get_status(filename: str) -> Activity:
+    with codecs.open(filename, "r") as f:
         config = load(f)
         assert config.get("type") in range(4)
 
