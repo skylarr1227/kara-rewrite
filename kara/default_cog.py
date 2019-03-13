@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
+from kara.entities.status import get_status
 
 
 class DefaultCog(Cog):
@@ -10,7 +11,7 @@ class DefaultCog(Cog):
         self._bot = bot
 
     @staticmethod
-    def reload_extensions(bot: Bot) -> None:
+    def reload_extensions(bot: Bot):
         for extension in list(bot.extensions):
             try:
                 bot.unload_extension(extension)
@@ -22,11 +23,22 @@ class DefaultCog(Cog):
             bot.add_cog(DefaultCog(bot))
         print(f"Reloaded commands: {[command.name for command in bot.commands]}")
 
+    @staticmethod
+    def reload_presence(bot: Bot):
+        status = get_status("data/status.json")
+        return bot.change_presence(activity=status)
+
     @commands.command(name="reload", hidden=True)
     @commands.is_owner()
     async def reload(self, ctx: Context):
         DefaultCog.reload_extensions(self._bot)
         await ctx.send("Reloaded all extensions!")
+
+    @commands.command(name="reloadpresence", hidden=True)
+    @commands.is_owner()
+    async def reloadpresence(self, ctx: Context):
+        DefaultCog.reload_presence(self._bot)
+        await ctx.send("Reloaded the presence!")
 
 
 def setup(bot: Bot) -> None:

@@ -1,8 +1,8 @@
 import discord
 import discord.ext.commands.errors as cerrors
 from discord.ext.commands import Bot, Context
-from kara.entities.status import from_filename
-from kara.entities import Config
+from kara.entities.status import get_status
+from kara.entities.config import Config
 from kara.default_cog import DefaultCog
 
 
@@ -25,9 +25,7 @@ class CustomClient(Bot):
         print(f"Logged in as {name}")
         print(f"Command prefix: {self.command_prefix}")
         print("-" * len(name))
-
-        status = from_filename("data/status.json")
-        return await self.change_presence(activity=status)
+        await DefaultCog.reload_presence(self)
 
     async def on_command_error(self, context: Context, exception) -> None:
         try:

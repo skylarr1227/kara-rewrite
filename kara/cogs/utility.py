@@ -10,7 +10,7 @@ class Utility(Cog):
     def __init__(self, bot):
         self._bot = bot
 
-    @commands.command(name="avatar", aliases=["a", "pfp"], brief="Shows a user's avatar.")
+    @commands.command(name="avatar", aliases=["pfp"], brief="Shows a user's avatar.")
     async def avatar(self, ctx: Context, user: Optional[discord.User], *args: Optional[str]):
         """Shows a user's avatar.
         This command accepts these formats:\n
