@@ -1,7 +1,6 @@
 import discord
 import discord.ext.commands.errors as cerrors
 from discord.ext.commands import Bot, Context
-from kara.entities.status import get_status
 from kara.entities.config import Config
 from kara.default_cog import DefaultCog
 

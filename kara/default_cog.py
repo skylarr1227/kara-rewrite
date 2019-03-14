@@ -2,6 +2,10 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
 from kara.entities.status import get_status
+from time import time
+from datetime import timedelta
+
+start_timestamp = time()
 
 
 class DefaultCog(Cog):
@@ -39,6 +43,14 @@ class DefaultCog(Cog):
     async def reloadpresence(self, ctx: Context):
         DefaultCog.reload_presence(self._bot)
         await ctx.send("Reloaded the presence!")
+
+    @commands.command(name="uptime", hidden=True)
+    async def uptime(self, ctx: Context):
+        current_timestamp = time()
+        difference = int(round(current_timestamp - start_timestamp))
+        embed: discord.Embed = discord.Embed(title="Uptime", description=str(timedelta(seconds=difference)))
+        embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
+        await ctx.send(embed=embed)
 
 
 def setup(bot: Bot) -> None:
