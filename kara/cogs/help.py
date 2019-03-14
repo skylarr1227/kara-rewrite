@@ -15,7 +15,7 @@ class Help(Cog):
         embed: discord.Embed = discord.Embed(title="Help")
         command: discord.ext.commands.Command
 
-        embed.set_footer(text=ctx.message.author.name, icon_url=ctx.message.author.avatar_url)
+        embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
 
         if not name:  # all commands, no args
             for command in self._bot.commands:
