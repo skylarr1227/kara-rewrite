@@ -1,6 +1,7 @@
-import discord
+from discord import Embed, Role
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
+from discord.ext.commands.converter import UserConverter
 from typing import Optional
 from hastebin import post
 
@@ -12,7 +13,7 @@ class Utility(Cog):
         self._bot = bot
 
     @commands.command(name="avatar", aliases=["pfp"], brief="Shows a user's avatar.")
-    async def avatar(self, ctx: Context, user: Optional[discord.User], *args: Optional[str]):
+    async def avatar(self, ctx: Context, user: Optional[UserConverter] = None, *args: str):
         """Shows a user's avatar.
         This command accepts these formats:\n
         **Mention**:` {prefix}avatar @Predator`\n
@@ -21,15 +22,18 @@ class Utility(Cog):
         Note: You can get an avatar of a user not in this guild by using their user ID.
         Note: Use quoes for users with mutli-word names, e.g. `\"User Name\"`"""
         if not user:
-            user = await self._bot.get_user_info(args[0])
+            try:
+                user = await self._bot.get_user_info(args[0])
+            except IndexError:
+                user = ctx.author
 
-        embed: discord.Embed = discord.Embed(description=f"{user.mention}'s avatar")
+        embed: Embed = Embed(description=f"{user.mention}'s avatar")
         embed.set_image(url=user.avatar_url_as(size=1024))
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
-    @commands.command(name="compare", brief="Compares two roles.")
-    async def compare(self, ctx: Context, role_a: discord.Role, role_b: discord.Role):
+    @commands.command(name="compare", aliases=["comp"], brief="Compares two roles.")
+    async def compare(self, ctx: Context, role_a: Role, role_b: Role):
         """Compares two roles
         This command accepts these formats:\n
         **Name**:` {prefix}compare RoleA RoleB`\n
@@ -49,9 +53,8 @@ class Utility(Cog):
         no_overlap: set = set(members_b ^ members_a)
         no_overlap_names: str = "\n".join(i.name for i in no_overlap)
 
-        embed: discord.Embed = discord.Embed(title="Compare",
-                                             description=f"Coparing {role_a.mention} with {role_b.mention}")
         await ctx.trigger_typing()
+        embed: Embed = Embed(title="Compare", description=f"Coparing {role_a.mention} with {role_b.mention}")
         embed.add_field(name=f"Members who are in {role_a.name} and {role_b.name}",
                         value=f"**{len(combined)}** members: {post(combined_names.encode('utf-8'))}")
         embed.add_field(name="Members who are in both roles",
