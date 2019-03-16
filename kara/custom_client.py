@@ -15,10 +15,10 @@ class CustomClient(Bot):
         DefaultCog.reload_extensions(self)
 
     @staticmethod
-    def startup(self) -> None:
+    def startup(self):
         self.run(self.config.token)
 
-    async def on_ready(self) -> None:
+    async def on_ready(self):
         name = self.user.name
         print("-" * len(name))
         print(f"Logged in as {name}")
@@ -26,20 +26,23 @@ class CustomClient(Bot):
         print("-" * len(name))
         await DefaultCog.reload_presence(self)
 
-    async def on_command_error(self, context: Context, exception) -> None:
+    async def on_command_error(self, ctx: Context, exception: Exception):
         try:
             raise exception
         except cerrors.NotOwner:
-            await context.send(f"You don't have permissions to use this command {context.author.mention}")
+            await ctx.send(f"You don't have permissions to use this command {ctx.author.mention}")
         except cerrors.BadArgument:
-            await context.send(f"A bad argument was given {context.author.mention}")
+            await ctx.send(f"A bad argument was given {ctx.author.mention}")
         except cerrors.MissingRequiredArgument:
-            await context.send(f"You are missing some required argument(s) {context.author.mention}")
+            await ctx.send(f"You are missing some required argument(s) {ctx.author.mention}")
         except cerrors.TooManyArguments:
-            await context.send(f"Too many arguments {context.author.mention}")
+            await ctx.send(f"Too many arguments {ctx.author.mention}")
+        except cerrors.CommandInvokeError:
+            if any(i in exception.__str__() for i in ["Unknown User", "Invalid Form Body"]):
+                await ctx.send(f"User not found {ctx.author.mention}")
         except cerrors.CommandNotFound:
             return
         except Exception:
-            await context.send(f"An exception occurred: [{exception}]")
+            await ctx.send(f"An exception occurred: [{exception}]")
             print(exception)
             print(type(exception))
