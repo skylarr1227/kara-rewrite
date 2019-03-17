@@ -1,4 +1,3 @@
-import discord
 import discord.ext.commands.errors as cerrors
 from discord.ext.commands import Bot, Context
 from kara.entities.config import Config
@@ -20,10 +19,10 @@ class CustomClient(Bot):
 
     async def on_ready(self):
         name = self.user.name
-        print("-" * len(name))
-        print(f"Logged in as {name}")
-        print(f"Command prefix: {self.command_prefix}")
-        print("-" * len(name))
+        print("-" * len(name), flush=True)
+        print(f"Logged in as {name}", flush=True)
+        print(f"Command prefix: {self.command_prefix}", flush=True)
+        print("-" * len(name), flush=True)
         await DefaultCog.reload_presence(self)
 
     async def on_command_error(self, ctx: Context, exception: Exception):
@@ -44,5 +43,5 @@ class CustomClient(Bot):
             return
         except Exception:
             await ctx.send(f"An exception occurred: [{exception}]")
-            print(exception)
-            print(type(exception))
+            print(exception, flush=True)
+            print(type(exception), flush=True)

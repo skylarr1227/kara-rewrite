@@ -1,8 +1,7 @@
 from discord import Embed, Role
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
-from discord.ext.commands.converter import UserConverter
-from typing import Optional
+from kara.converters import UserConverter
 from hastebin import post
 
 
@@ -13,7 +12,7 @@ class Utility(Cog):
         self._bot = bot
 
     @commands.command(name="avatar", aliases=["pfp"], brief="Shows a user's avatar.")
-    async def avatar(self, ctx: Context, user: Optional[UserConverter] = None, *args: str):
+    async def avatar(self, ctx: Context, user: UserConverter = None, *args: str):
         """Shows a user's avatar.
         This command accepts these formats:\n
         **Mention**:` {prefix}avatar @Predator`\n
@@ -22,13 +21,10 @@ class Utility(Cog):
         Note: You can get an avatar of a user not in this guild by using their user ID.
         Note: Use quoes for users with mutli-word names, e.g. `\"User Name\"`"""
         if not user:
-            try:
-                user = await self._bot.get_user_info(args[0])
-            except IndexError:
-                user = ctx.author
+            user = ctx.author
 
         embed: Embed = Embed(description=f"{user.mention}'s avatar")
-        embed.set_image(url=user.avatar_url_as(size=1024))
+        embed.set_image(url=user.avatar_url_as(size=2048))
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
