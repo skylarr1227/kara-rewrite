@@ -1,4 +1,4 @@
-import discord
+from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
 from kara.entities.status import get_status
@@ -20,12 +20,12 @@ class DefaultCog(Cog):
             try:
                 bot.unload_extension(extension)
             except Exception as e:
-                print(e)
+                print(e, flush=True)
         for extension in bot.config.start_cogs:
             bot.load_extension(f"kara.cogs.{extension}")
         if not any([isinstance(cog, DefaultCog) for cog in bot.cogs.values()]):
             bot.add_cog(DefaultCog(bot))
-        print(f"Reloaded commands: {[command.name for command in bot.commands]}")
+        print(f"Reloaded commands: {[command.name for command in bot.commands]}", flush=True)
 
     @staticmethod
     def reload_presence(bot: Bot):
@@ -48,9 +48,13 @@ class DefaultCog(Cog):
     async def uptime(self, ctx: Context):
         current_timestamp = time()
         difference = int(round(current_timestamp - start_timestamp))
-        embed: discord.Embed = discord.Embed(title="Uptime", description=str(timedelta(seconds=difference)))
+        embed: Embed = Embed(title="Uptime", description=str(timedelta(seconds=difference)))
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
+
+    @commands.command(name="ping", hidden=True)
+    async def ping(self, ctx: Context):
+        await ctx.send(f"Pong! {round(self._bot.latency * 1000)}ms")
 
 
 def setup(bot: Bot) -> None:

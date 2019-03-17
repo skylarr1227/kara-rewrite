@@ -1,6 +1,6 @@
-import discord
+from discord import Embed
 from discord.ext import commands
-from discord.ext.commands import Bot, Context, Cog
+from discord.ext.commands import Bot, Context, Cog, Command
 
 
 class Help(Cog):
@@ -12,8 +12,8 @@ class Help(Cog):
     @commands.command(name="help", aliases=["h"], brief="Shows all available commands.", hidden=True)
     async def help(self, ctx: Context, name: str = None):
         """Shows all available commands."""
-        embed: discord.Embed = discord.Embed(title="Help")
-        command: discord.ext.commands.Command
+        embed: Embed = Embed(title="Help")
+        command: Command
 
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
 
@@ -33,7 +33,7 @@ class Help(Cog):
 
         embed.title = f"Help for the {command.name} command"
         if command.aliases:  # command has aliases
-            embed.add_field(name="Aliases", value=command.aliases)
+            embed.add_field(name="Aliases", value=",".join(command.aliases))
         embed.add_field(name="Description", value=command.help.replace("{prefix}", self._bot.command_prefix))
         await ctx.send(embed=embed)
 
