@@ -1,0 +1,75 @@
+{
+  "flag" : ":flag_us:",
+  "errors" : {
+    "not_owner" : "You don't have permissions to use this command %{mention}",
+    "bad_argument" : "A bad argument was given %{mention}",
+    "missing_arguments" : "You are missing some required argument(s) %{mention}",
+    "too_many_arguments" : "Too many arguments %{mention}",
+    "user_not_found" : "User not found %{mention}",
+    "exception" : "An exception occured: %{mention}\n%{exception}"
+  },
+  "help" : {
+    "not_found" : "Command **%{name}** not found. Type `%{prefix}help` for more info.",
+    "no_help" : "Help for **%{name}** not found. Type `%{prefix}help` for more info.",
+    "help_title" : "Help",
+    "command_help_title" : "Help for the %{name} command",
+    "aliases" : "Aliases",
+    "description" : "Description",
+    "subcommands" : "Subcommands",
+    "formats" : "Available command formats",
+    "notes" : "Notes"
+  },
+  "locale" : {
+    "language" : "Language",
+    "current" : "Current language",
+    "available" : "Available languages",
+    "unavailable" : "Locale unavailable, available locales: %{locales}",
+    "set" : "Set locale to **%{loc}** :flag_us:",
+    "title" : "Value of key **%{k}**",
+    "translation" : "Translation"
+  },
+  "role": {
+    "title" : "Info about %{mention}",
+    "name" : "Name",
+    "created_at" : "Creation date",
+    "color" : "Color",
+    "users" : "Number of users in role",
+    "mentionable" : "Mentionable"
+  },
+  "compare" : {
+    "title": "Compare",
+    "description" : "Comparing %{a} with %{b}",
+    "members": "**%{amount}** members: %{url}",
+    "combined" : "Members, who are in %{a} and %{b}",
+    "both" : "Members, who are in both roles",
+    "only" : "Members, who are only in %{role}",
+    "no_overlap" : "Members, who don't overlap in %{a} and %{b}"
+  },
+  "avatar" : "%{mention}'s avatar.",
+  "reload_commands" : "Reloaded all commands",
+  "reload_status" : "Reloaded the presence",
+  "doc" : {
+    "formats" : {
+      "mention" : "**Mention**: `%{prefix}%{command} @%{name}`",
+      "name" : "**Name**: `%{prefix}%{command} %{name}`",
+      "id" : "**ID**: `%{prefix}%{command} %{id}`",
+      "mention_d" : "**Mention**: `%{prefix}%{command} @%{name} @%{name2}`",
+      "name_d" : "**Name**: `%{prefix}%{command} %{name} %{name2}`",
+      "id_d" : "**ID**: `%{prefix}%{command} %{id} %{id2}`",
+      "mixed" : "**Mixed**: `%{prefix}%{command} %{role_id} \"Role Name\"`"
+    },
+    "brief" : {
+      "help": "Shows all available commands",
+      "avatar" : "Shows a user's avatar",
+      "role" : "Shows info about a role",
+      "compare" : "Compares two roles",
+      "lang" : "Shows the current language"
+    },
+    "notes" : {
+      "help": "Use `%{prefix}help command_name` for more info on a command.",
+      "avatar" : "Use quotes for users with mutli-word names, e.g. `\"User Name\"`\nYou can get an avatar of a user that's not in the guild by using their user ID.",
+      "role" : "Use quoes for roles with mutli-word names, e.g. `\"Role Name\"`",
+      "compare" : "Use quoes for roles with mutli-word names, e.g. `\"Role Name\"`"
+    }
+  }
+}

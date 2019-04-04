@@ -1,4 +1,5 @@
 import discord.ext.commands.errors as cerrors
+from i18n import t
 from discord.ext.commands import Bot, Context
 from kara.entities.config import Config
 from kara.default_cog import DefaultCog
@@ -21,6 +22,8 @@ class CustomClient(Bot):
         name = self.user.name
         print("-" * len(name), flush=True)
         print(f"Logged in as {name}", flush=True)
+        print(f"Lang: {self.config.lang}", flush=True)
+        print(f"Cogs: {self.config.start_cogs}", flush=True)
         print(f"Command prefix: {self.command_prefix}", flush=True)
         print("-" * len(name), flush=True)
         await DefaultCog.reload_presence(self)
@@ -29,19 +32,19 @@ class CustomClient(Bot):
         try:
             raise exception
         except cerrors.NotOwner:
-            await ctx.send(f"You don't have permissions to use this command {ctx.author.mention}")
+            await ctx.send(t("errors.not_owner", mention=ctx.author.mention))
         except cerrors.BadArgument:
-            await ctx.send(f"A bad argument was given {ctx.author.mention}")
+            await ctx.send(t("errors.bad_argument", mention=ctx.author.mention))
         except cerrors.MissingRequiredArgument:
-            await ctx.send(f"You are missing some required argument(s) {ctx.author.mention}")
+            await ctx.send(t("errors.missing_arguments", mention=ctx.author.mention))
         except cerrors.TooManyArguments:
-            await ctx.send(f"Too many arguments {ctx.author.mention}")
+            await ctx.send(t("errors.too_many_arguments", mention=ctx.author.mention))
         except cerrors.CommandInvokeError:
             if any(i in exception.__str__() for i in ["Unknown User", "Invalid Form Body"]):
-                await ctx.send(f"User not found {ctx.author.mention}")
+                await ctx.send(t("errors.user_not_found", mention=ctx.author.mention))
         except cerrors.CommandNotFound:
             return
         except Exception:
-            await ctx.send(f"An exception occurred: [{exception}]")
+            await ctx.send(t("errors.exception", mention=ctx.author.mention, exception=exception))
             print(exception, flush=True)
             print(type(exception), flush=True)

@@ -3,7 +3,9 @@
 
 \.python-version
 
-data/
+data/config.json
+
+data/status.json
 
 kara/__pycache__/
 
@@ -12,3 +14,5 @@ kara/entities/__pycache__/
 kara/cogs/__pycache__/
 
 kara/converters/__pycache__/
+
+kara/tests

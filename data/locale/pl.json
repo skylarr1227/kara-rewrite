@@ -1,0 +1,75 @@
+{
+  "flag" : ":flag_pl:",
+  "errors" : {
+    "not_owner" : "Nie posiadasz pemisji, aby użyć tej komendy %{mention}",
+    "bad_argument" : "Podano zły argument %{mention}",
+    "missing_arguments" : "Nie podano wymaganych argumentów %{mention}",
+    "too_many_arguments" : "Zbyt dużo argumentów %{mention}",
+    "user_not_found" : "Nie znaleziono użytkownika %{mention}",
+    "exception" : "Wystąpił błąd: \n%{mention}"
+  },
+  "help" : {
+    "not_found" : "Nie znaleziono komendy **%{name}**. Wpisz `%{prefix}help` aby zobaczyć listę wszystkich komend.",
+    "no_help" : "Nie znaleziono opisu dla **%{name}**. Wpisz `%{prefix}help` aby zobaczyć listę wszystkich komend.",
+    "help_title" : "Pomoc",
+    "command_help_title" : "Pomoc dla komendy %{name}",
+    "aliases" : "Aliasy",
+    "description" : "Opis",
+    "subcommands" : "Subkomendy",
+    "formats" : "Dostępne formaty",
+    "notes" : "Notki"
+  },
+  "locale" : {
+    "language" : "Język",
+    "current" : "Aktywny język",
+    "available" : "Dostępne języki",
+    "unavailable" : "Ten język jest niedostępny, dostępne języki: %{locales}",
+    "set" : "Ustawiono język na **%{loc}** :flag_pl:",
+    "title" : "Tłumaczenie klucza **%{k}**",
+    "translation" : "Tłumaczenie"
+  },
+  "role": {
+    "title" : "Informacje o roli %{mention}",
+    "name" : "Nazwa",
+    "created_at" : "Data utworzenia",
+    "color" : "Kolor",
+    "users" : "Ilość użytkowników w roli",
+    "mentionable" : "Można wzmiankować?"
+  },
+  "compare" : {
+    "title": "Porównanie",
+    "description" : "Porówanie roli %{a} z %{b}",
+    "members": "**%{amount}** użytkowników: %{url}",
+    "combined" : "Użytkownicy, którzy są w rolach %{a} i %{b}",
+    "both" : "Użytkownicy, którzy są w obydwu rolach",
+    "only" : "Użytkownicy, którzy są tylko w roli %{role}",
+    "no_overlap" : "Użytkownicy, którzy nie powtarzają się w rolach %{a} i %{b}"
+  },
+  "avatar" : "Avatar użytkownika %{mention}.",
+  "reload_commands" : "Przeładowano wszystkie komendy",
+  "reload_status" : "Przeładowano status",
+  "doc" : {
+    "formats" : {
+      "mention" : "**Wzmianka**: `%{prefix}%{command} @%{name}`",
+      "name" : "**Nick**: `%{prefix}%{command} %{name}`",
+      "id" : "**ID**: `%{prefix}%{command} %{id}`",
+      "mention_d" : "**Wzmianka**: `%{prefix}%{command} @%{name} @%{name2}`",
+      "name_d" : "**Nick**: `%{prefix}%{command} %{name} %{name2}`",
+      "id_d" : "**ID**: `%{prefix}%{command} %{id} %{id2}`",
+      "mixed" : "**Mieszane**: `%{prefix}%{command} %{role_id} \"Nazwa Roli\"`"
+    },
+    "brief" : {
+      "help": "Wyświetla wszystkie dostępne komendy",
+      "avatar" : "Wyświetla avatar wybranego użytkownika",
+      "role" : "Wyświetla informacje o podanej roli",
+      "compare" : "Porównuje ze sobą dwie role",
+      "lang" : "Wyświetla aktualnie używany język"
+    },
+    "notes" : {
+      "help": "Aby uzyskać więcej informacji o wybranej komendzie, użyj `%{prefix}help nazwa_komendy`.",
+      "avatar" : "Dla dwuczłonowych nazw użytkownika użyj cudzysłowów np. `\"Nazwa Użytkownika\"`\nAby uzyskać avatar osoby, której nie ma na serwerze możesz użyć jego ID.",
+      "role" : "Dla dwuczłonowych nazw roli użyj cudzysłowów np. `\"Nazwa Roli\"`",
+      "compare" : "Dla dwuczłonowych nazw roli użyj cudzysłowów np. `\"Nazwa Roli\"`"
+    }
+  }
+}

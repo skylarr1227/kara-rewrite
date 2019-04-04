@@ -4,6 +4,7 @@ from discord.ext.commands import Bot, Context, Cog
 from kara.entities.status import get_status
 from time import time
 from datetime import timedelta
+from i18n import t
 
 start_timestamp = time()
 
@@ -25,7 +26,7 @@ class DefaultCog(Cog):
             bot.load_extension(f"kara.cogs.{extension}")
         if not any([isinstance(cog, DefaultCog) for cog in bot.cogs.values()]):
             bot.add_cog(DefaultCog(bot))
-        print(f"Reloaded commands: {[command.name for command in bot.commands]}", flush=True)
+        print(f"Reloaded commands: {sorted([command.name for command in bot.commands])}", flush=True)
 
     @staticmethod
     def reload_presence(bot: Bot):
@@ -36,19 +37,21 @@ class DefaultCog(Cog):
     @commands.is_owner()
     async def reload(self, ctx: Context):
         DefaultCog.reload_extensions(self._bot)
-        await ctx.send("Reloaded all extensions!")
+        await ctx.send(t("reload_commands"))
 
-    @commands.command(name="reloadpresence", hidden=True)
+    @commands.command(name="reloadpresence", hidden=True)  # this doesn't really work
     @commands.is_owner()
-    async def reloadpresence(self, ctx: Context):
+    async def reloadpresence(self, ctx: Context):  # TODO: Fix reloadpresence command
         DefaultCog.reload_presence(self._bot)
-        await ctx.send("Reloaded the presence!")
+        await ctx.send(t("reload_status"))
 
     @commands.command(name="uptime", hidden=True)
     async def uptime(self, ctx: Context):
         current_timestamp = time()
         difference = int(round(current_timestamp - start_timestamp))
-        embed: Embed = Embed(title="Uptime", description=str(timedelta(seconds=difference)))
+        embed: Embed = Embed(title="Uptime",
+                             description=str(timedelta(seconds=difference)),
+                             timestamp=ctx.message.created_at)
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
