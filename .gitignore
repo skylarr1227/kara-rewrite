@@ -16,3 +16,5 @@ kara/cogs/__pycache__/
 kara/converters/__pycache__/
 
 kara/tests
+
+data/history\.json
