@@ -3,6 +3,7 @@ from discord import Member, Embed
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
 from json import load, dump
+from time import strftime, gmtime
 
 
 async def load_data():
@@ -34,8 +35,7 @@ class History(Cog):
         if user_id not in data[guild_id]:
             data[guild_id][user_id] = []
 
-        data[guild_id][user_id].append([before.nick if before.nick else before.name, after.nick if after.nick else after.name])
-        # print(f"{before.nick if before.nick else before.name} --> {after.nick if after.nick else after.name}")
+        data[guild_id][user_id].append([strftime("%A, %d.%m.%Y", gmtime()), after.nick if after.nick else after.name])
 
         await save_data(data)
 
@@ -49,9 +49,7 @@ class History(Cog):
         if str(member.id) not in data[str(member.guild.id)]:
             await ctx.send(t("history.no_hist", name=member.name))
 
-        nicks = []  # Create a list of nicks
-        for i in data[str(member.guild.id)][str(member.id)]:
-            nicks.append(f"{i[0]} -> {i[1]}")
+        nicks = [f"`{i[0]}`  {i[1]}" for i in data[str(member.guild.id)][str(member.id)]]  # Create a list of nicks
 
         embed = Embed(description=t("history.title", mention=member.mention), timestamp=ctx.message.created_at)
         embed.add_field(name=t("history.nicks"), value="\n".join(nicks))  # TODO: Add a limit
