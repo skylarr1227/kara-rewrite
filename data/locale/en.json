@@ -46,7 +46,7 @@
     "no_overlap" : "Members, who don't overlap in %{a} and %{b}"
   },
   "history": {
-    "title" : "%{mention}'s nickname history",
+    "title" : "%{mention}'s nickname history (%{amount} latest nicks)",
     "nicks": "Nicknames",
     "no_hist" : "%{name} doesn't have a nickname history."
   },
@@ -75,8 +75,9 @@
     "notes" : {
       "help": "Use `%{prefix}help command_name` for more info on a command.",
       "avatar" : "Use quotes for users with mutli-word names, e.g. `\"User Name\"`\nYou can get an avatar of a user that's not in the guild by using their user ID.",
-      "role" : "Use quoes for roles with mutli-word names, e.g. `\"Role Name\"`",
-      "compare" : "Use quoes for roles with mutli-word names, e.g. `\"Role Name\"`"
+      "role" : "Use quotes for roles with mutli-word names, e.g. `\"Role Name\"`",
+      "compare" : "Use quotes for roles with mutli-word names, e.g. `\"Role Name\"`",
+      "history" : "Use quotes for users with multi-word names, e.g. `\"User Name\"`"
     }
   }
 }

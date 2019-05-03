@@ -29,20 +29,20 @@ class DefaultCog(Cog):
         print(f"Reloaded commands: {sorted([command.name for command in bot.commands])}", flush=True)
 
     @staticmethod
-    def reload_presence(bot: Bot):
+    async def reload_presence(bot: Bot):
         status = get_status("data/status.json")
-        return bot.change_presence(activity=status)
+        return await bot.change_presence(activity=status)
 
-    @commands.command(name="reload", hidden=True)
+    @commands.command(name="reload", aliases=["r"], hidden=True)
     @commands.is_owner()
     async def reload(self, ctx: Context):
         DefaultCog.reload_extensions(self._bot)
         await ctx.send(t("reload_commands"))
 
-    @commands.command(name="reloadpresence", hidden=True)  # this doesn't really work
+    @commands.command(name="reloadpresence", aliases=["rp"], hidden=True)  # this doesn't really work
     @commands.is_owner()
-    async def reloadpresence(self, ctx: Context):  # TODO: Fix reloadpresence command
-        DefaultCog.reload_presence(self._bot)
+    async def reloadpresence(self, ctx: Context):
+        await self.reload_presence(self._bot)
         await ctx.send(t("reload_status"))
 
     @commands.command(name="uptime", hidden=True)

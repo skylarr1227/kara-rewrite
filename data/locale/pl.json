@@ -46,7 +46,7 @@
     "no_overlap" : "Użytkownicy, którzy nie powtarzają się w rolach %{a} i %{b}"
   },
   "history": {
-    "title" : "Historia pseudonimów %{mention}",
+    "title" : "Historia pseudonimów %{mention} (ostatnie %{amount} pseudonimów)",
     "nicks": "Pseudonimy",
     "no_hist" : "%{name} nie posiada historii pseudonimów."
   },
@@ -75,7 +75,8 @@
       "help": "Aby uzyskać więcej informacji o wybranej komendzie, użyj `%{prefix}help nazwa_komendy`.",
       "avatar" : "Dla dwuczłonowych nazw użytkownika użyj cudzysłowów np. `\"Nazwa Użytkownika\"`\nAby uzyskać avatar osoby, której nie ma na serwerze możesz użyć jego ID.",
       "role" : "Dla dwuczłonowych nazw roli użyj cudzysłowów np. `\"Nazwa Roli\"`",
-      "compare" : "Dla dwuczłonowych nazw roli użyj cudzysłowów np. `\"Nazwa Roli\"`"
+      "compare" : "Dla dwuczłonowych nazw roli użyj cudzysłowów np. `\"Nazwa Roli\"`",
+      "history" : "Dla dwuczłonowych nazw użytkownika użyj cudzysłowów np. `\"Nazwa Użytkownika\"`"
     }
   }
 }

@@ -1,8 +1,8 @@
-from i18n import t, get
+from i18n import t
 from random import choice
 from discord import Embed
 from discord.ext import commands
-from discord.ext.commands import Bot, Context, Cog, Command
+from discord.ext.commands import Bot, Context, Cog  # , Command
 
 
 class Help(Cog):
@@ -11,17 +11,19 @@ class Help(Cog):
     def __init__(self, bot):
         self._bot = bot
 
-    @commands.command(name="help", aliases=["h"], hidden=True)
-    async def help(self, ctx: Context, name: str = None, subcommand: str = None):
+    @commands.command(name="help", aliases=["h", "halp"], hidden=True)
+    async def help(self, ctx: Context, name: str = None):  # , subcommand: str = None
         """name id mention_d"""
         embed: Embed = Embed(title=t("help.help_title"), timestamp=ctx.message.created_at)
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
+        out_text = ""
 
         if not name:  # show all commands if no args
-            for command in self._bot.commands:
+            for command in self._bot.commands:  # TODO: Add support for aliases
                 if command.hidden:  # skip if hidden
                     continue
-                embed.add_field(name=command.name, value=t(f"doc.brief.{command.name}"), inline=False)
+                out_text += f"`{self._bot.command_prefix}{command.name}` - {t(f'doc.brief.{command.name}')}\n\n"
+            embed.description = out_text
             return await ctx.send(embed=embed)
 
         if name not in [i.name for i in self._bot.commands]:  # invalid command name given

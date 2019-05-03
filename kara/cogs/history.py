@@ -3,7 +3,7 @@ from discord import Member, Embed
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
 from json import load, dump
-from time import strftime, gmtime
+from time import strftime, localtime
 
 
 async def load_data():
@@ -35,7 +35,7 @@ class History(Cog):
         if user_id not in data[guild_id]:
             data[guild_id][user_id] = []
 
-        data[guild_id][user_id].append([strftime("%A, %d.%m.%Y", gmtime()), after.nick if after.nick else after.name])
+        data[guild_id][user_id].append([strftime("%A, %d.%m.%Y", localtime()), after.nick if after.nick else after.name])
 
         await save_data(data)
 
@@ -51,8 +51,9 @@ class History(Cog):
 
         nicks = [f"`{i[0]}`  {i[1]}" for i in data[str(member.guild.id)][str(member.id)]]  # Create a list of nicks
 
-        embed = Embed(description=t("history.title", mention=member.mention), timestamp=ctx.message.created_at)
-        embed.add_field(name=t("history.nicks"), value="\n".join(nicks))  # TODO: Add a limit
+        embed = Embed(description=t("history.title", mention=member.mention, amount=str(len(nicks[-15:]))),
+                      timestamp=ctx.message.created_at)
+        embed.add_field(name=t("history.nicks"), value="\n".join(nicks[-15:]))  # TODO: Add a variable limit/pages
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 

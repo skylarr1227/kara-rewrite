@@ -39,9 +39,9 @@ class CustomClient(Bot):
             await ctx.send(t("errors.missing_arguments", mention=ctx.author.mention))
         except cerrors.TooManyArguments:
             await ctx.send(t("errors.too_many_arguments", mention=ctx.author.mention))
-        except cerrors.CommandInvokeError:
-            if any(i in exception.__str__() for i in ["Unknown User", "Invalid Form Body"]):
-                await ctx.send(t("errors.user_not_found", mention=ctx.author.mention))
+        # except cerrors.CommandInvokeError:
+        #     if any(i in exception.__str__() for i in ["Unknown User", "Invalid Form Body"]):
+        #         await ctx.send(t("errors.user_not_found", mention=ctx.author.mention))
         except cerrors.CommandNotFound:
             return
         except Exception:

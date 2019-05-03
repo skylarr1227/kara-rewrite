@@ -3,6 +3,8 @@
 
 \.python-version
 
+venv/
+
 data/config.json
 
 data/status.json

@@ -23,7 +23,6 @@ class Lang(Cog):
     @lang.command(name="set", brief="Sets the lang.")
     @commands.is_owner()
     async def _set(self, ctx: Context, lang: str):
-        """Sets the lang"""
         if lang not in get("available_locales"):
             return await ctx.send(t("locale.unavailable", locales=", ".join(get("available_locales"))))
         set("locale", lang)  # TODO: Overwrite the lang key in config
@@ -31,7 +30,6 @@ class Lang(Cog):
 
     @lang.command(name="get", brief="Returns the key value.")
     async def _get(self, ctx: Context, key: str):
-        """Returns the key value."""
         embed: Embed = Embed(description=t("locale.title", k=key))
         embed.add_field(name=t("locale.translation"), value=t(key, prefix=self._bot.command_prefix, command="lang",
                                                               name=ctx.author.name, name2=f"{ctx.author.name}_2",
