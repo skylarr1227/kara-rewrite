@@ -20,6 +20,6 @@ class UserConverter(Converter):
             user_id = user_id_match.group("id")
 
         try:
-            return await bot.get_user_info(user_id=user_id)
+            return await bot.fetch_user(user_id=user_id)
         except:
             raise cerrors.BadArgument
