@@ -38,7 +38,7 @@ class JoinListener(Cog):
         #embed = Embed(tile="Bot ID's", description=data["id"], timestamp=ctx.message.created_at)
         #embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         #await ctx.send(embed=Embed)
-        await ctx.send("\n".join([f"`{i}` ({await self._bot.fetch_user(i)})" for i in data["id"]]))
+        await ctx.send("\n".join([f"`{i}` (<@{i}>)" for i in data["id"]]))
 
 def setup(bot: Bot):
     bot.add_cog(JoinListener(bot))
