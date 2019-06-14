@@ -3,6 +3,7 @@ from discord import Embed
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
 from json import load, dump
+from hastebin import post
 
 
 async def load_data():
@@ -38,7 +39,9 @@ class JoinListener(Cog):
         #embed = Embed(tile="Bot ID's", description=data["id"], timestamp=ctx.message.created_at)
         #embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         #await ctx.send(embed=Embed)
-        await ctx.send("\n".join([f"`{i}` (<@{i}>)" for i in data["id"]]))
+        await ctx.send("\n".join([f"<@{i}>" for i in data["id"]]))
+        id_list = str("\n".join(str(i) for i in data["id"]))
+        await ctx.send(f"Zebrane id: {post(id_list)}")
 
 def setup(bot: Bot):
     bot.add_cog(JoinListener(bot))
