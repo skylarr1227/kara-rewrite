@@ -31,12 +31,14 @@ class History(Cog):
         user_id = str(before.id)
         guild_id = str(before.guild.id)
 
-        # TODO: Add a guild id key to the hist.json file if it doesn't exist
+        # TODO: Add a guild id key automatically to the hist.json file
+        #       if it doesn't exist
         if user_id not in data[guild_id]:
             data[guild_id][user_id] = []
 
-        data[guild_id][user_id].append([strftime("%A, %d.%m.%Y", localtime()), after.nick if after.nick else after.name])
-
+        time = strftime("%A, %d.%m.%Y", localtime())
+        nick = after.nick if after.nick else after.name
+        data[guild_id][user_id].append([time, nick])
         await save_data(data)
 
     @commands.command(name="history", aliases=["hist"], ignore_extra=True)
@@ -49,11 +51,17 @@ class History(Cog):
         if str(member.id) not in data[str(member.guild.id)]:
             await ctx.send(t("history.no_hist", name=member.name))
 
-        nicks = [f"`{i[0]}`  {i[1]}" for i in data[str(member.guild.id)][str(member.id)]]  # Create a list of nicks
+        # nicks = [f"`{i[0]}`  {i[1]}" for i in data[str(member.guild.id)][str(member.id)]]  # Create a list of nicks
+        nicks = []
+        for i in data[str(member.guild.id)][str(member.id)]:
+            nicks.append(f"`{i[0]}`  {i[1]}")
 
-        embed = Embed(description=t("history.title", mention=member.mention, amount=str(len(nicks[-15:]))),
+        embed = Embed(description=t("history.title", mention=member.mention,
+                                    amount=str(len(nicks[-15:])),
+                                    total=str(len(nicks))),
                       timestamp=ctx.message.created_at)
-        embed.add_field(name=t("history.nicks"), value="\n".join(nicks[-15:]))  # TODO: Add a variable limit/pages
+        embed.add_field(name=t("history.nicks"), value="\n".join(nicks[-15:]))
+        # TODO: Add a variable limit/pages
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 

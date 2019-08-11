@@ -46,7 +46,7 @@
     "no_overlap" : "Użytkownicy, którzy nie powtarzają się w rolach %{a} i %{b}"
   },
   "history": {
-    "title" : "Historia pseudonimów %{mention} (ostatnie %{amount} pseudonimów)",
+    "title" : "Historia pseudonimów %{mention} (najnowsze %{amount} z %{total} pseudonimów)",
     "nicks": "Pseudonimy",
     "no_hist" : "%{name} nie posiada historii pseudonimów."
   },

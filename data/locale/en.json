@@ -46,7 +46,7 @@
     "no_overlap" : "Members, who don't overlap in %{a} and %{b}"
   },
   "history": {
-    "title" : "%{mention}'s nickname history (%{amount} latest nicks)",
+    "title" : "%{mention}'s nickname history (latest %{amount} out of %{total} nicks)",
     "nicks": "Nicknames",
     "no_hist" : "%{name} doesn't have a nickname history."
   },
