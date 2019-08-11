@@ -1,12 +1,12 @@
 {
   "flag" : ":flag_us:",
   "errors" : {
-    "not_owner" : "You don't have permissions to use this command %{mention}",
-    "bad_argument" : "A bad argument was given %{mention}",
-    "missing_arguments" : "You are missing some required argument(s) %{mention}",
-    "too_many_arguments" : "Too many arguments %{mention}",
-    "user_not_found" : "User not found %{mention}",
-    "exception" : "An exception occured: %{mention}\n%{exception}"
+    "error" : "Error!",
+    "not_owner" : "You don't have permissions to use this command.",
+    "bad_argument" : "A bad argument was given.",
+    "missing_arguments" : "You are missing some required argument(s).",
+    "too_many_arguments" : "Too many arguments.",
+    "conversion" : "User not found."
   },
   "help" : {
     "not_found" : "Command **%{name}** not found. Type `%{prefix}help` for more info.",

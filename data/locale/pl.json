@@ -1,12 +1,12 @@
 {
   "flag" : ":flag_pl:",
   "errors" : {
-    "not_owner" : "Nie posiadasz pemisji, aby użyć tej komendy %{mention}",
-    "bad_argument" : "Podano zły argument %{mention}",
-    "missing_arguments" : "Nie podano wymaganych argumentów %{mention}",
-    "too_many_arguments" : "Zbyt dużo argumentów %{mention}",
-    "user_not_found" : "Nie znaleziono użytkownika %{mention}",
-    "exception" : "Wystąpił błąd: \n%{mention}"
+    "error" : "Wystąpił błąd!",
+    "not_owner" : "Nie posiadasz wystarczających pemisji, aby użyć tej komendy.",
+    "bad_argument" : "Podano zły argument.",
+    "missing_arguments" : "Nie podano wymaganych argumentów.",
+    "too_many_arguments" : "Zbyt dużo argumentów.",
+    "conversion" : "Nie znaleziono użytkownika."
   },
   "help" : {
     "not_found" : "Nie znaleziono komendy **%{name}**. Wpisz `%{prefix}help` aby zobaczyć listę wszystkich komend.",

@@ -22,4 +22,4 @@ class UserConverter(Converter):
         try:
             return await bot.fetch_user(user_id=user_id)
         except:
-            raise cerrors.BadArgument
+            raise cerrors.ConversionError
