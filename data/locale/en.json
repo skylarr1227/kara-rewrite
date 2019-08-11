@@ -51,8 +51,7 @@
     "no_hist" : "%{name} doesn't have a nickname history."
   },
   "avatar" : "%{mention}'s avatar.",
-  "reload_commands" : "Reloaded all commands",
-  "reload_status" : "Reloaded the presence",
+  "reload" : "Reloaded commands and status.",
   "doc" : {
     "formats" : {
       "mention" : "**Mention**: `%{prefix}%{command} @%{name}`",

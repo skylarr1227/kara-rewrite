@@ -26,7 +26,6 @@ class DefaultCog(Cog):
             bot.load_extension(f"kara.cogs.{extension}")
         if not any([isinstance(cog, DefaultCog) for cog in bot.cogs.values()]):
             bot.add_cog(DefaultCog(bot))
-        print(f"Reloaded commands: {sorted([command.name for command in bot.commands])}", flush=True)
 
     @staticmethod
     async def reload_presence(bot: Bot):
@@ -37,15 +36,10 @@ class DefaultCog(Cog):
     @commands.is_owner()
     async def reload(self, ctx: Context):
         DefaultCog.reload_extensions(self._bot)
-        await ctx.send(t("reload_commands"))
-
-    @commands.command(name="reloadpresence", aliases=["rp"], hidden=True)  # this doesn't really work
-    @commands.is_owner()
-    async def reloadpresence(self, ctx: Context):
         await self.reload_presence(self._bot)
-        await ctx.send(t("reload_status"))
+        await ctx.send(t("reload"))
 
-    @commands.command(name="uptime", hidden=True)
+    @commands.command(name="uptime", aliases=["up"], hidden=True)
     async def uptime(self, ctx: Context):
         current_timestamp = time()
         difference = int(round(current_timestamp - start_timestamp))

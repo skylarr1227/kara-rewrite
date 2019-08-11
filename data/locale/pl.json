@@ -51,8 +51,7 @@
     "no_hist" : "%{name} nie posiada historii pseudonimów."
   },
   "avatar" : "Avatar użytkownika %{mention}.",
-  "reload_commands" : "Przeładowano wszystkie komendy",
-  "reload_status" : "Przeładowano status",
+  "reload" : "Przeładowano komendy oraz status.",
   "doc" : {
     "formats" : {
       "mention" : "**Wzmianka**: `%{prefix}%{command} @%{name}`",
