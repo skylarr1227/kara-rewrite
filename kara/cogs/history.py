@@ -44,6 +44,7 @@ class History(Cog):
     @commands.command(name="history", aliases=["hist"], ignore_extra=True)
     async def history(self, ctx: Context, member: Member = None):
         """mention name id"""
+
         data = await load_data()
 
         if not member:
@@ -51,7 +52,6 @@ class History(Cog):
         if str(member.id) not in data[str(member.guild.id)]:
             await ctx.send(t("history.no_hist", name=member.name))
 
-        # nicks = [f"`{i[0]}`  {i[1]}" for i in data[str(member.guild.id)][str(member.id)]]  # Create a list of nicks
         nicks = []
         for i in data[str(member.guild.id)][str(member.id)]:
             nicks.append(f"`{i[0]}`  {i[1]}")

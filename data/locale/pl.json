@@ -23,7 +23,7 @@
     "language" : "Język",
     "current" : "Aktywny język",
     "available" : "Dostępne języki",
-    "unavailable" : "Ten język jest niedostępny, dostępne języki: %{locales}",
+    "unavailable" : "Ten język jest niedostępny.",
     "set" : "Ustawiono język na **%{loc}** :flag_pl:",
     "title" : "Tłumaczenie klucza **%{k}**",
     "translation" : "Tłumaczenie"

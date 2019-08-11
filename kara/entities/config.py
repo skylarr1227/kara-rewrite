@@ -20,7 +20,8 @@ class Config:
 def get_config(filename: str, bot_name: str = None) -> Config:
     with open(filename, "r") as f:
         file = load(f)
-        if not bot_name:  # use the default bot name variable if no arguments were given
+        # If no bot_name is give, use the "default" value from the config file
+        if not bot_name:
             bot_name = file.get("default")
         assert file.get(bot_name)
         config = file.get(bot_name)

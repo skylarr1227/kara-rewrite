@@ -23,7 +23,7 @@
     "language" : "Language",
     "current" : "Current language",
     "available" : "Available languages",
-    "unavailable" : "Locale unavailable, available locales: %{locales}",
+    "unavailable" : "This locale is unavailable.",
     "set" : "Set locale to **%{loc}** :flag_us:",
     "title" : "Value of key **%{k}**",
     "translation" : "Translation"

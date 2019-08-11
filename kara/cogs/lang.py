@@ -16,26 +16,34 @@ class Lang(Cog):
         if ctx.invoked_subcommand:
             return
         embed: Embed = Embed(title=t("locale.language"))
-        embed.add_field(name=t("locale.current"), value=f"**{get('locale')}** {t('flag')}")
-        embed.add_field(name=t("locale.available"), value=", ".join(get("available_locales")))
+        embed.add_field(name=t("locale.current"),
+                        value=f"**{get('locale')}** {t('flag')}")
+        embed.add_field(name=t("locale.available"),
+                        value=", ".join(get("available_locales")))
         await ctx.send(embed=embed)
 
     @lang.command(name="set", brief="Sets the lang.")
     @commands.is_owner()
     async def _set(self, ctx: Context, lang: str):
         if lang not in get("available_locales"):
-            return await ctx.send(t("locale.unavailable", locales=", ".join(get("available_locales"))))
+            return await ctx.send(t("locale.unavailable"))
         set("locale", lang)  # TODO: Overwrite the lang key in config
         await ctx.send(t("locale.set", loc=get("locale")))
 
     @lang.command(name="get", brief="Returns the key value.")
     async def _get(self, ctx: Context, key: str):
-        embed: Embed = Embed(description=t("locale.title", k=key))
-        embed.add_field(name=t("locale.translation"), value=t(key, prefix=self._bot.command_prefix, command="lang",
-                                                              name=ctx.author.name, name2=f"{ctx.author.name}_2",
-                                                              id=ctx.author.id, id2=str(ctx.author.id)[::-1],
-                                                              locale=get("locale"), locales=get("available_locales"),
-                                                              k=key, role_id=choice(ctx.guild.roles).id))
+        embed: Embed = Embed(title=t("locale.title", k=key))
+        embed.add_field(name=t("locale.translation"),
+                        value=t(key, prefix=self._bot.command_prefix,
+                                command="lang",
+                                name=ctx.author.name,
+                                name2=f"{ctx.author.name}_2",
+                                id=ctx.author.id,
+                                id2=str(ctx.author.id)[::-1],
+                                locale=get("locale"),
+                                locales=get("available_locales"),
+                                k=key,
+                                role_id=choice(ctx.guild.roles).id))
         await ctx.send(embed=embed)
 
 
