@@ -63,12 +63,12 @@
       "mixed" : "**Mieszane**: `%{prefix}%{command} %{role_id} \"Nazwa Roli\"`"
     },
     "brief" : {
-      "help": "Wyświetla wszystkie dostępne komendy",
-      "avatar" : "Wyświetla avatar wybranego użytkownika",
-      "role" : "Wyświetla informacje o podanej roli",
-      "compare" : "Porównuje ze sobą dwie role",
-      "lang" : "Wyświetla aktualnie używany język",
-      "history" : "Wyświetla historię pseudonimów wybranego użytkownika"
+      "help": "Wyświetla wszystkie dostępne komendy.",
+      "avatar" : "Wyświetla avatar wybranego użytkownika.",
+      "role" : "Wyświetla informacje o podanej roli.",
+      "compare" : "Porównuje ze sobą dwie role.",
+      "lang" : "Wyświetla aktualnie używany język.",
+      "history" : "Wyświetla historię pseudonimów wybranego użytkownika."
     },
     "notes" : {
       "help": "Aby uzyskać więcej informacji o wybranej komendzie, użyj `%{prefix}help nazwa_komendy`.",

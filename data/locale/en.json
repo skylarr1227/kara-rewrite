@@ -63,12 +63,12 @@
       "mixed" : "**Mixed**: `%{prefix}%{command} %{role_id} \"Role Name\"`"
     },
     "brief" : {
-      "help": "Shows all available commands",
-      "avatar" : "Shows a user's avatar",
-      "role" : "Shows info about a role",
-      "compare" : "Compares two roles",
-      "lang" : "Shows the current language",
-      "history" : "Shows a given user's nickname history"
+      "help": "Shows all available commands.",
+      "avatar" : "Shows a user's avatar.",
+      "role" : "Shows info about a role.",
+      "compare" : "Compares two roles.",
+      "lang" : "Shows the current language.",
+      "history" : "Shows a given user's nickname history."
 
     },
     "notes" : {
