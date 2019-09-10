@@ -3,17 +3,7 @@ from discord import Embed, Role
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
 from kara.converters import UserConverter
-
-
-# def pastebin(text: str) -> str:
-#     if text == "":
-#         return ""
-#     request_data = {"api_dev_key": "9a6f459f60b5f6d695ae8af0e88e3cf5",
-#                     "api_option": "paste",
-#                     "api_paste_private": 1,
-#                     "api_paste_code": text}
-#     return requests.post("https://pastebin.com/api/api_post.php",
-#                          data=request_data).text
+from hastebin import post as hbp
 
 
 class Utility(Cog):
@@ -39,7 +29,9 @@ class Utility(Cog):
     async def role(self, ctx: Context, role: Role):
         """role_name role_id role_mixed"""
 
-        # members = "\n".join([f"{i.name}#{i.discriminator}" for i in role.members])
+        members = "\n".join([f"{i.name}#{i.discriminator}"
+                             for i in role.members])
+
         embed: Embed = Embed(description=t("role.title", mention=role.mention),
                              color=role.color,
                              timestamp=ctx.message.created_at)
@@ -55,8 +47,8 @@ class Utility(Cog):
                         value=f"Hex: {role.color}\nRGB: {role.color.to_rgb()}",
                         inline=True)
         embed.add_field(name=t("role.users"),
-                        value=str(len(role.members)),
-                        inline=True)  # TODO: Fix hastebin
+                        value=f"[{str(len(role.members))}]({hbp(members)})",
+                        inline=True)
         embed.add_field(name=t("role.mentionable"),
                         value=role.mentionable)
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
@@ -75,14 +67,16 @@ class Utility(Cog):
         only_b: set = members_b - members_a
         no_overlap: set = members_b ^ members_a
 
-        # Currently off, because hastebin.com died and I am still looking
-        # for an unlimited and easy paste service
-        # TODO: Fix hastebin
-        # combined_names = "\n".join(f"{i.name}#{i.discriminator}" for i in combined)
-        # both_names = "\n".join(f"{i.name}#{i.discriminator}" for i in both)
-        # only_a_names = "\n".join(f"{i.name}#{i.discriminator}" for i in only_a)
-        # only_b_names = "\n".join(f"{i.name}#{i.discriminator}" for i in only_b)
-        # no_overlap_names = "\n".join(f"{i.name}#{i.discriminator}" for i in no_overlap)
+        combined_names = "\n".join(f"{i.name}#{i.discriminator}"
+                                   for i in combined)
+        both_names = "\n".join(f"{i.name}#{i.discriminator}"
+                               for i in both)
+        only_a_names = "\n".join(f"{i.name}#{i.discriminator}"
+                                 for i in only_a)
+        only_b_names = "\n".join(f"{i.name}#{i.discriminator}"
+                                 for i in only_b)
+        no_overlap_names = "\n".join(f"{i.name}#{i.discriminator}"
+                                     for i in no_overlap)
 
         await ctx.trigger_typing()
         embed = Embed(title=t("compare.title"),
@@ -90,23 +84,23 @@ class Utility(Cog):
                                     a=role_a.mention,
                                     b=role_b.mention),
                       timestamp=ctx.message.created_at)
-        embed.add_field(name=t("compare.combined",
-                               a=role_a.name, b=role_a.name),
+        embed.add_field(name=t("compare.combined", inline=False,
+                               a=role_a.name, b=role_b.name),
                         value=t("compare.members", amount=len(combined),
-                                url="Hastebin off"))
-        embed.add_field(name=t("compare.both"),
+                                url=hbp(combined_names)))
+        embed.add_field(name=t("compare.both"), inline=False,
                         value=t("compare.members", amount=len(both),
-                                url="Hastebin off"))
-        embed.add_field(name=t("compare.only", role=role_a.name),
+                                url=hbp(both_names)),)
+        embed.add_field(name=t("compare.only", role=role_a.name), inline=False,
                         value=t("compare.members", amount=len(only_a),
-                                url="Hastebin off"))
-        embed.add_field(name=t("compare.only", role=role_b.name),
+                                url=hbp(only_a_names)))
+        embed.add_field(name=t("compare.only", role=role_b.name), inline=False,
                         value=t("compare.members", amount=len(only_b),
-                                url="Hastebin off"))
+                                url=hbp(only_b_names)))
         embed.add_field(name=t("compare.no_overlap", a=role_a.name,
-                               b=role_b.name),
+                               b=role_b.name), inline=False,
                         value=t("compare.members", amount=len(no_overlap),
-                                url="Hastebin off"))
+                                url=hbp(no_overlap_names)))
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
 
