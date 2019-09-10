@@ -2,7 +2,8 @@ from i18n import t
 from discord import Embed, Role
 from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
-from kara.converters import UserConverter
+from discord.ext.commands.errors import MissingRequiredArgument, TooManyArguments
+from kara.converters import UserConverter, MessageLinkConverter
 from hastebin import post as hbp
 
 
@@ -103,6 +104,35 @@ class Utility(Cog):
                                 url=hbp(no_overlap_names)))
         embed.set_footer(text=ctx.author.name, icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)
+
+    @commands.group(name="vote", invoke_without_command=True)
+    async def vote(self, ctx: Context, *options: str):
+        # Checks for amount of vote options
+        if len(options) == 0:
+            # This raise is stupid and shouldn't exist on planet Earth.
+            raise MissingRequiredArgument(
+                next(iter(self.vote.commands)).params["self"])
+        if len(options) > 11:
+            raise TooManyArguments
+
+        # List of unicode emojis (0-10)
+        emojis = ["\U00000030\U000020e3", "\U00000031\U000020e3",
+                  "\U00000032\U000020e3", "\U00000033\U000020e3",
+                  "\U00000034\U000020e3", "\U00000035\U000020e3",
+                  "\U00000036\U000020e3", "\U00000037\U000020e3",
+                  "\U00000038\U000020e3", "\U00000039\U000020e3",
+                  "\U0001f51f"]
+
+        # Compose the embed's content from options and emojis
+        embed_text = ""
+        for i, j in zip(options, emojis):
+            embed_text += f"{j} - **{i}**\n"
+        embed = Embed(title=t("vote.title"), description=embed_text)
+
+        # Send the embed and add aproperiate reactions
+        vote_message = await ctx.send(embed=embed)
+        for i in emojis[:len(options)]:
+            await vote_message.add_reaction(i)
 
 
 def setup(bot: Bot):
