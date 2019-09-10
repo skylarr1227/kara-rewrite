@@ -39,7 +39,7 @@
   "compare" : {
     "title": "Compare",
     "description" : "Comparing %{a} with %{b}",
-    "members": "**%{amount}** members: %{url}",
+    "members": "**%{amount}** [members](%{url})",
     "combined" : "Members, who are in %{a} and %{b}",
     "both" : "Members, who are in both roles",
     "only" : "Members, who are only in %{role}",
@@ -49,6 +49,9 @@
     "title" : "%{mention}'s nickname history (latest %{amount} out of %{total} nicks)",
     "nicks": "Nicknames",
     "no_hist" : "%{name} doesn't have a nickname history."
+  },
+  "vote" : {
+    "title" : "Vote"
   },
   "avatar" : "%{mention}'s avatar.",
   "reload" : "Reloaded commands and status.",
@@ -60,7 +63,8 @@
       "mention_d" : "**Mention**: `%{prefix}%{command} @%{name} @%{name2}`",
       "name_d" : "**Name**: `%{prefix}%{command} %{name} %{name2}`",
       "id_d" : "**ID**: `%{prefix}%{command} %{id} %{id2}`",
-      "mixed" : "**Mixed**: `%{prefix}%{command} %{role_id} \"Role Name\"`"
+      "mixed" : "**Mixed**: `%{prefix}%{command} %{role_id} \"Role Name\"`",
+      "text_d" : "**Multiple arguments**: `%{prefix}%{command} Option1 \"Second option\" ThirdOption`"
     },
     "brief" : {
       "help": "Shows all available commands.",
@@ -68,15 +72,16 @@
       "role" : "Shows info about a role.",
       "compare" : "Compares two roles.",
       "lang" : "Shows the current language.",
-      "history" : "Shows a given user's nickname history."
-
+      "history" : "Shows a given user's nickname history.",
+      "vote" : "Starts a vote with given options."
     },
     "notes" : {
       "help": "Use `%{prefix}help command_name` for more info on a command.",
       "avatar" : "Use quotes for users with mutli-word names, e.g. `\"User Name\"`\nYou can get an avatar of a user that's not in the guild by using their user ID.",
       "role" : "Use quotes for roles with mutli-word names, e.g. `\"Role Name\"`",
       "compare" : "Use quotes for roles with mutli-word names, e.g. `\"Role Name\"`",
-      "history" : "Use quotes for users with multi-word names, e.g. `\"User Name\"`"
+      "history" : "Use quotes for users with multi-word names, e.g. `\"User Name\"`",
+      "vote" : "Put options longer than one word in quotes, e.g. `\"Second Option\"`"
     }
   }
 }

@@ -39,7 +39,7 @@
   "compare" : {
     "title": "Porównanie",
     "description" : "Porówanie roli %{a} z %{b}",
-    "members": "**%{amount}** użytkowników: %{url}",
+    "members": "**%{amount}** [użytkowników](%{url})",
     "combined" : "Użytkownicy, którzy są w rolach %{a} i %{b}",
     "both" : "Użytkownicy, którzy są w obydwu rolach",
     "only" : "Użytkownicy, którzy są tylko w roli %{role}",
@@ -49,6 +49,9 @@
     "title" : "Historia pseudonimów %{mention} (najnowsze %{amount} z %{total} pseudonimów)",
     "nicks": "Pseudonimy",
     "no_hist" : "%{name} nie posiada historii pseudonimów."
+  },
+  "vote" : {
+    "title" : "Głosowanie"
   },
   "avatar" : "Avatar użytkownika %{mention}.",
   "reload" : "Przeładowano komendy oraz status.",
@@ -60,7 +63,8 @@
       "mention_d" : "**Wzmianka**: `%{prefix}%{command} @%{name} @%{name2}`",
       "name_d" : "**Nick**: `%{prefix}%{command} %{name} %{name2}`",
       "id_d" : "**ID**: `%{prefix}%{command} %{id} %{id2}`",
-      "mixed" : "**Mieszane**: `%{prefix}%{command} %{role_id} \"Nazwa Roli\"`"
+      "mixed" : "**Mieszane**: `%{prefix}%{command} %{role_id} \"Nazwa Roli\"`",
+      "text_d" : "**Wiele argumentów**: `%{prefix}%{command} Opcja1 \"Opcja dwa\" OpcjaTrzy`"
     },
     "brief" : {
       "help": "Wyświetla wszystkie dostępne komendy.",
@@ -68,14 +72,16 @@
       "role" : "Wyświetla informacje o podanej roli.",
       "compare" : "Porównuje ze sobą dwie role.",
       "lang" : "Wyświetla aktualnie używany język.",
-      "history" : "Wyświetla historię pseudonimów wybranego użytkownika."
+      "history" : "Wyświetla historię pseudonimów wybranego użytkownika.",
+      "vote" : "Tworzy głosowanie z podanymi opcjami."
     },
     "notes" : {
       "help": "Aby uzyskać więcej informacji o wybranej komendzie, użyj `%{prefix}help nazwa_komendy`.",
       "avatar" : "Dla dwuczłonowych nazw użytkownika użyj cudzysłowów np. `\"Nazwa Użytkownika\"`\nAby uzyskać avatar osoby, której nie ma na serwerze możesz użyć jego ID.",
       "role" : "Dla dwuczłonowych nazw roli użyj cudzysłowów np. `\"Nazwa Roli\"`",
       "compare" : "Dla dwuczłonowych nazw roli użyj cudzysłowów np. `\"Nazwa Roli\"`",
-      "history" : "Dla dwuczłonowych nazw użytkownika użyj cudzysłowów np. `\"Nazwa Użytkownika\"`"
+      "history" : "Dla dwuczłonowych nazw użytkownika użyj cudzysłowów np. `\"Nazwa Użytkownika\"`",
+      "vote" : "Opcje dłuższe niż jedno słowo umieść w cudzysłowach np. `\"Opcja Trzecia\"`"
     }
   }
 }
