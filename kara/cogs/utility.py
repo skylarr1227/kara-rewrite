@@ -4,7 +4,11 @@ from discord.ext import commands
 from discord.ext.commands import Bot, Context, Cog
 from discord.ext.commands.errors import MissingRequiredArgument, TooManyArguments
 from kara.converters import UserConverter, MessageLinkConverter
-from hastebin import post as hbp
+from hastebin import post
+
+
+def hbp(body: str) -> str:
+    return post(body.encode("utf-8"))
 
 
 class Utility(Cog):
@@ -91,7 +95,7 @@ class Utility(Cog):
                                 url=hbp(combined_names)))
         embed.add_field(name=t("compare.both"), inline=False,
                         value=t("compare.members", amount=len(both),
-                                url=hbp(both_names)),)
+                                url=hbp(both_names)))
         embed.add_field(name=t("compare.only", role=role_a.name), inline=False,
                         value=t("compare.members", amount=len(only_a),
                                 url=hbp(only_a_names)))
