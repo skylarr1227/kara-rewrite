@@ -111,6 +111,8 @@ class Utility(Cog):
 
     @commands.group(name="vote", invoke_without_command=True)
     async def vote(self, ctx: Context, *options: str):
+        """text_d"""
+
         # Checks for amount of vote options
         if len(options) == 0:
             # This raise is stupid and shouldn't exist on planet Earth.
