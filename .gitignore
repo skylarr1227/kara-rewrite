@@ -20,3 +20,5 @@ kara/converters/__pycache__/
 kara/tests
 
 data/history\.json
+
+data/data.sqlite
