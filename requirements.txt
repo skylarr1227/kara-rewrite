@@ -1,3 +1,4 @@
+pony
 discord.py[voice]
 hastebin.py
 python-i18n

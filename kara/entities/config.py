@@ -9,12 +9,13 @@ class Config:
     token: str
     start_cogs: List[str]
 
-    def __init__(self, name, lang, prefix, token, start_cogs):
+    def __init__(self, name, lang, prefix, token, start_cogs, db_location):
         self.name = name
         self.lang = lang
         self.prefix = prefix
         self.token = token
         self.start_cogs = start_cogs
+        self.db_location = db_location
 
 
 def get_config(filename: str, bot_name: str = None) -> Config:
@@ -30,4 +31,5 @@ def get_config(filename: str, bot_name: str = None) -> Config:
                       lang=config["lang"],
                       prefix=config["prefix"],
                       token=config["token"],
-                      start_cogs=config["start_cogs"])
+                      start_cogs=config["start_cogs"],
+                      db_location=file.get("db_location"))
